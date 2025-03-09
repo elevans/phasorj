@@ -12,6 +12,9 @@ import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import org.scijava.command.Command;
 import org.scijava.plugin.Plugin;
@@ -23,6 +26,29 @@ public class PhasorJ implements Command {
 
 	@Override
 	public void run() {
-		// TODO
+		// HACK: initialize the JavaFX toolkit first
+		new JFXPanel();
+
+		// initialize the gui
+		Platform.runLater(() -> {
+			createGUI();
+		});
+	}
+
+	private static void createGUI() {
+		// create GUI elements
+		StackPane root = new  StackPane();
+		Stage stage = new Stage();
+		Button button = new Button("OK");
+
+		// configure elements
+		stage.setTitle("PhasorJ");
+		root.getChildren().add(button);
+
+		// create the scene
+		Scene scene = new Scene(root, 300, 200);
+		stage.setScene(scene);
+
+		stage.show();
 	}
 }

@@ -81,7 +81,6 @@
 		<javafx-graphics.version>23.0.2</javafx-graphics.version>
 		<javafx-swing.version>23.0.1</javafx-swing.version>
 		<controlsfx.version>11.2.1</controlsfx.version>
-		<scijava-ops-image.version>2.0.0-SNAPSHOT</scijava-ops-image.version>
 	</properties>
 
 	<dependencies>
@@ -116,11 +115,6 @@
 		<dependency>
 			<groupId>org.scijava</groupId>
 			<artifactId>scijava-common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.scijava</groupId>
-			<artifactId>scijava-ops-image</artifactId>
-			<version>${scijava-ops-image.version}</version>
 		</dependency>
 
 		<!-- JavaFX dependencies -->
