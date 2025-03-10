@@ -11,6 +11,7 @@ package fiji.plugin.phasorj;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 
 import org.scijava.command.Command;
 import org.scijava.plugin.Plugin;
+
+import java.io.IOException;
 
 @Plugin(type = Command.class, menuPath = "Analyze>Phasor>PhasorJ")
 public class PhasorJ implements Command {
@@ -36,19 +39,23 @@ public class PhasorJ implements Command {
 	}
 
 	private static void createGUI() {
+		// load the GUI from FXML files
+		FXMLLoader fxmlLoader = new FXMLLoader(PhasorJ.class.getResource("fxml/plot-pane.fxml"));
+
 		// create GUI elements
-		StackPane root = new  StackPane();
 		Stage stage = new Stage();
-		Button button = new Button("OK");
 
 		// configure elements
 		stage.setTitle("PhasorJ");
-		root.getChildren().add(button);
 
 		// create the scene
-		Scene scene = new Scene(root, 300, 200);
+		Scene scene = null;
+		try {
+			scene = new Scene(fxmlLoader.load());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		stage.setScene(scene);
-
 		stage.show();
 	}
 }
